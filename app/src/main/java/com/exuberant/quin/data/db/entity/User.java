@@ -1,12 +1,27 @@
-package com.exuberant.quin.data.entities;
+package com.exuberant.quin.data;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "users")
 public class User {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     private String name;
+
     private String email;
+
+    @ColumnInfo(name = "hashed_password")
     private String hashedPassword;
+
+    @ColumnInfo(name = "profile_picture")
     private String profilePicture;
 
+    @Ignore
     public User() {
     }
 
@@ -47,5 +62,13 @@ public class User {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
