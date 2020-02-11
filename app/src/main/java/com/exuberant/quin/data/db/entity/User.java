@@ -1,5 +1,6 @@
-package com.exuberant.quin.data;
+package com.exuberant.quin.data.db.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -8,8 +9,9 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "users")
 public class User {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
+    private String id;
 
     private String name;
 
@@ -18,18 +20,23 @@ public class User {
     @ColumnInfo(name = "hashed_password")
     private String hashedPassword;
 
-    @ColumnInfo(name = "profile_picture")
-    private String profilePicture;
-
     @Ignore
     public User() {
     }
 
-    public User(String name, String email, String hashedPassword, String profilePicture) {
+    public User(String id, String name, String email, String hashedPassword) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.hashedPassword = hashedPassword;
-        this.profilePicture = profilePicture;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -56,19 +63,4 @@ public class User {
         this.hashedPassword = hashedPassword;
     }
 
-    public String getProfilePicture() {
-        return profilePicture;
-    }
-
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }

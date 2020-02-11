@@ -1,101 +1,88 @@
-package com.exuberant.quin.ui.login;
+package com.exuberant.quin.ui.auth;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.inputmethod.InputMethodManager;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.transition.Fade;
 
 import com.exuberant.quin.R;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.exuberant.quin.ui.auth.login.LoginFragment;
+import com.exuberant.quin.ui.auth.signup.SignupFragment;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
 
-public class LoginActivity extends AppCompatActivity {
+public class AuthActivity extends AppCompatActivity {
 
-    private static final String TAG = "LoginActivity";
-    private static final int RC_SIGN_IN = 9001;
-    private FirebaseAuth firebaseAuth;
-    private GoogleSignInClient googleSignInClient;
+    private static FirebaseAuth firebaseAuth;
+    private static AuthControlInterface fragmentControlInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_auth);
         initialize();
     }
 
     private void initialize() {
-        firebaseAuth = FirebaseAuth.getInstance();
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
-    }
-
-    private void createAccount(String email, String password) {
-        
-    }
-
-    //Authentication Functions for Google Sign In
-    private void signInWithGoogle() {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
+        fragmentControlInterface = new AuthControlInterface() {
+            @Override
+            public void switchToLogin() {
+                switchFragment(new LoginFragment());
             }
+
+            @Override
+            public void switchToSignup() {
+                switchFragment(new SignupFragment());
+            }
+
+            @Override
+            public void showSnackbar(String message, int value) {
+                AuthActivity.this.showSnackBar(message, value);
+            }
+
+            @Override
+            public void hideKeyboard() {
+                hideSoftKeyBoard();
+            }
+        };
+        firebaseAuth = FirebaseAuth.getInstance();
+        fragmentControlInterface.switchToLogin();
+    }
+
+
+    void switchFragment(Fragment fragment) {
+        fragment.setEnterTransition(new Fade());
+        fragment.setExitTransition(new Fade());
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fl_fragment_container, fragment).commit();
+    }
+
+    public static FirebaseAuth getFirebaseAuth() {
+        return firebaseAuth;
+    }
+
+    public static AuthControlInterface getFragmentControlInterface() {
+        return fragmentControlInterface;
+    }
+
+    void showSnackBar(String message, int color) {
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.main_layout), message, Snackbar.LENGTH_SHORT);
+        if (color == 0) {
+            snackbar.getView().setBackgroundResource(R.color.colorErrorSnackbar);
+        } else {
+            snackbar.getView().setBackgroundResource(R.color.colorSuccessSnackbar);
+        }
+        snackbar.show();
+    }
+
+    private void hideSoftKeyBoard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+
+        if (imm.isAcceptingText()) { // verify if the soft keyboard is open
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
     }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-
-                        }
-                    }
-                });
-    }
-
-
-
 }

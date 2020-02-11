@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Quin</string>
+
+    <string name="account_type">com.exuberant.quin.account</string>
 </resources>
