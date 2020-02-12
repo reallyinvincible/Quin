@@ -19,9 +19,6 @@ public interface UserDao {
     @Query("SELECT * FROM users")
     LiveData<List<User>> getAllUsers();
 
-    @Query("SELECT * FROM users WHERE email = :email")
-    LiveData<List<User>> getUserByEmail(String email);
-
     @Query("DELETE FROM users WHERE id = :id")
     void deleteUser(String id);
 

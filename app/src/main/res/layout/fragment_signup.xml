@@ -16,7 +16,7 @@
         android:layout_marginTop="32dp"
         android:text="Sign Up"
         android:textColor="@color/colorText"
-        android:textSize="24sp"
+        android:textSize="40sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,9 +38,12 @@
         app:boxStrokeColor="@color/colorAccent"
         app:boxStrokeWidth="2dp"
         app:hintTextColor="@color/colorText"
+        app:layout_constraintBottom_toTopOf="@+id/tl_signup_password"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_chainStyle="packed">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -67,7 +70,9 @@
         app:boxStrokeColor="@color/colorAccent"
         app:boxStrokeWidth="2dp"
         app:hintTextColor="@color/colorText"
+        app:layout_constraintBottom_toTopOf="@+id/tl_signup_confirm_password"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tl_signup_email"
         app:passwordToggleEnabled="true"
@@ -98,7 +103,9 @@
         app:boxStrokeColor="@color/colorAccent"
         app:boxStrokeWidth="2dp"
         app:hintTextColor="@color/colorText"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signup"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tl_signup_password"
         app:passwordToggleEnabled="true"
@@ -114,32 +121,36 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_signup"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="sign up"
-        app:cornerRadius="4dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/colorAccent"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:text="sign up"
         android:textColor="@color/colorPrimary"
+        app:cornerRadius="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tl_signup_confirm_password" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/colorAccent"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:text="login"
         android:textColor="@color/colorPrimary"
         app:cornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_signup" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,15 +20,19 @@ public class User {
     @ColumnInfo(name = "hashed_password")
     private String hashedPassword;
 
+    @ColumnInfo(name = "phone_number")
+    private String phoneNumber;
+
     @Ignore
     public User() {
     }
 
-    public User(String id, String name, String email, String hashedPassword) {
+    public User(@NonNull String id, String name, String email, String hashedPassword, String phoneNumber) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.hashedPassword = hashedPassword;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getId() {
@@ -63,4 +67,11 @@ public class User {
         this.hashedPassword = hashedPassword;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }

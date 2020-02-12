@@ -64,6 +64,7 @@ public class SignupFragment extends Fragment {
         } else if (!ValidatorUtils.isValidEmail(email)) {
             AuthActivity.getFragmentControlInterface().showSnackbar("Invalid email", 0);
         } else {
+            AuthActivity.getFragmentControlInterface().startLoading();
             signupWithEmail(email, password);
         }
     }
@@ -81,6 +82,7 @@ public class SignupFragment extends Fragment {
                             user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
+                                    AuthActivity.getFragmentControlInterface().stopLoading();
                                     AuthActivity.getFragmentControlInterface().showSnackbar("Please verify the link sent to your email", 1);
                                     AuthActivity.getFragmentControlInterface().switchToLogin();
                                 }
@@ -88,6 +90,7 @@ public class SignupFragment extends Fragment {
                         } else {
                             // If sign in fails, display a message to the user.
                             AuthActivity.getFragmentControlInterface().showSnackbar("Authentication Failed", 0);
+                            AuthActivity.getFragmentControlInterface().stopLoading();
                         }
                     }
                 });

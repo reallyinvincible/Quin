@@ -1,4 +1,4 @@
-package com.exuberant.quin.internal;
+package com.exuberant.quin.internal.services;
 
 import android.app.Service;
 import android.content.Intent;

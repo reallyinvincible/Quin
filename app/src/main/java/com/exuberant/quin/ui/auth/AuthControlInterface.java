@@ -6,5 +6,9 @@ public interface AuthControlInterface {
     void switchToSignup();
     void showSnackbar(String message, int value);
     void hideKeyboard();
+    void startLoading();
+    void stopLoading();
+
+    AuthViewModel getViewModel();
 
 }
