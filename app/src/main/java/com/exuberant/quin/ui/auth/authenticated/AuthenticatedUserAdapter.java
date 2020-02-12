@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 
 import java.util.List;
 
-public class AuthenticatedUserAdapter extends RecyclerView.Adapter<AuthenticatedUserAdapter.AuthenticatedViewHolder>{
+public class AuthenticatedUserAdapter extends RecyclerView.Adapter<AuthenticatedUserAdapter.AuthenticatedViewHolder> {
 
     List<User> userList;
     Context context;

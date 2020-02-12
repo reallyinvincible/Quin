@@ -26,7 +26,7 @@ public class AuthViewModel extends ViewModel {
         });
     }
 
-    public LiveData<List<User>> getAllLoggedInUsers(){
+    public LiveData<List<User>> getAllLoggedInUsers() {
         return loggedInUsers;
     }
 

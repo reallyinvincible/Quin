@@ -35,11 +35,11 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
-    public LiveData<List<User>> getAllLoggedInUsers(){
+    public LiveData<List<User>> getAllLoggedInUsers() {
         return loggedInUsers;
     }
 
-    public LiveData<List<Account>> getAllLoggedInAccounts(){
+    public LiveData<List<Account>> getAllLoggedInAccounts() {
         return loggedInAccounts;
     }
 
@@ -47,7 +47,7 @@ public class HomeViewModel extends ViewModel {
         repository.removeUser(user);
     }
 
-    public void removeAccount(Account account){
+    public void removeAccount(Account account) {
         repository.removeAccount(account);
     }
 

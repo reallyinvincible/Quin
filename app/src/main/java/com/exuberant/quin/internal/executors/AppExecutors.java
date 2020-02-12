@@ -1,4 +1,4 @@
-package com.exuberant.quin.internal.services.executors;
+package com.exuberant.quin.internal.executors;
 
 import android.os.Handler;
 import android.os.Looper;

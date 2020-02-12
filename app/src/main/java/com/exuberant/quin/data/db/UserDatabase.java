@@ -22,7 +22,7 @@ public abstract class UserDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "user_db";
     private static UserDatabase sInstance;
 
-    public static UserDatabase getInstance(Context context){
+    public static UserDatabase getInstance(Context context) {
         if (sInstance == null) {
             synchronized (LOCK) {
                 sInstance = Room.databaseBuilder(context.getApplicationContext(),

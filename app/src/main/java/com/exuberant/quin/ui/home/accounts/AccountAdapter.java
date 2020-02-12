@@ -15,7 +15,7 @@ import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
-public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountViewHolder>{
+public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountViewHolder> {
 
     List<Account> accountList;
 
@@ -52,7 +52,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountAdapter.AccountV
         return accountList.size();
     }
 
-    class AccountViewHolder extends RecyclerView.ViewHolder{
+    class AccountViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameTextView, emailTextView, phoneTextView;
         MaterialButton deleteButton;

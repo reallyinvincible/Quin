@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer;
 import com.exuberant.quin.R;
 import com.exuberant.quin.data.db.UserDatabase;
 import com.exuberant.quin.data.db.entity.User;
-import com.exuberant.quin.internal.services.executors.AppExecutors;
+import com.exuberant.quin.internal.executors.AppExecutors;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,7 +69,7 @@ public class UserRepositoryImpl implements UserRepository {
         bundle.putString("email", user.getEmail());
         boolean success = accountManager.addAccountExplicitly(account, user.getHashedPassword(), bundle);
         addToDatabase(user);
-        if (success){
+        if (success) {
             return account;
         } else {
             return null;

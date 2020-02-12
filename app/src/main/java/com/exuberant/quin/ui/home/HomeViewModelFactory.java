@@ -20,5 +20,5 @@ public class HomeViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         HomeViewModel viewModel = new HomeViewModel(repository);
         return ((T) viewModel);
     }
-    
+
 }

@@ -2,4 +2,29 @@
     <string name="app_name">Quin</string>
 
     <string name="account_type">com.exuberant.quin.account</string>
+    <string name="home">Home</string>
+    <string name="login_with_new_account">login with new account</string>
+    <string name="logout_from_current_account">logout from current account</string>
+    <string name="show_users">show users</string>
+    <string name="show_accounts">show accounts</string>
+    <string name="register">Register</string>
+    <string name="name">name</string>
+    <string name="phone">phone</string>
+    <string name="register_small">register</string>
+    <string name="effortless_account_management">Effortless Account Management</string>
+    <string name="click_anywhere_to_continue">Click anywhere to continue...</string>
+    <string name="accounts">Accounts</string>
+    <string name="no_accounts">No Accounts</string>
+    <string name="no_authenticated_users">No Authenticated Users</string>
+    <string name="login">Login</string>
+    <string name="signup">signup</string>
+    <string name="authenticated_users">Authenticated Users</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="confirm_password">confirm password</string>
+    <string name="logout">logout</string>
+    <string name="remove_account">remove account</string>
+    <string name="sign_in">Sign In</string>
+    <string name="remove_user">remove user</string>
 </resources>

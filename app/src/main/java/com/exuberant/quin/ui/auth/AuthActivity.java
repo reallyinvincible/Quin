@@ -114,12 +114,12 @@ public class AuthActivity extends AppCompatActivity {
         }
     }
 
-    private void stopInteraction(){
+    private void stopInteraction() {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 
-    private void resumeInteraction(){
+    private void resumeInteraction() {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }

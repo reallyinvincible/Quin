@@ -61,7 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
         Intent intent = getIntent();
-        if (intent.hasExtra("userdata")){
+        if (intent.hasExtra("userdata")) {
             String userData = intent.getStringExtra("userdata");
             Gson gson = new Gson();
             user = gson.fromJson(userData, User.class);
@@ -82,11 +82,11 @@ public class RegisterActivity extends AppCompatActivity {
         String name = nameTextInputLayout.getEditText().getText().toString();
         String password = passwordTextInputLayout.getEditText().getText().toString();
         String phone = phoneTextInputLayout.getEditText().getText().toString();
-        if (name.length() <= 0){
+        if (name.length() <= 0) {
             showSnackBar("Invalid name", 0);
         } else if (password.length() <= 6) {
             showSnackBar("Password too small", 0);
-        } else if (phone.length() != 10){
+        } else if (phone.length() != 10) {
             showSnackBar("Invalid phone number", 0);
         } else {
             user.setName(name);
@@ -97,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void bindUi() {
-        if (user.getEmail() != "" && user.getEmail().length() > 0){
+        if (user.getEmail() != "" && user.getEmail().length() > 0) {
             emailTextInputLayout.getEditText().setText(user.getEmail());
             emailTextInputLayout.getEditText().setEnabled(false);
             emailTextInputLayout.setAlpha(0.5f);
