@@ -11,6 +11,6 @@ Challenge Task for FamPay
 * Build the app
 * Run on a device
 
-__OR__
-* Download and install the quin.apk file on an Android device
+*OR*
+* Download and install the [quin.apk](https://github.com/reallyinvincible/Quin/blob/master/quin.apk) file on an Android device
 * Run the app
